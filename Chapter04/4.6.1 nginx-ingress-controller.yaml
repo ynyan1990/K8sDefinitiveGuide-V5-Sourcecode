@@ -190,18 +190,19 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: mywebsite-ingress
+  namespace: nginx-ingress   #名称空间
 spec:
-  rules:
-  - host: mywebsite.com
+  rules:    # 转发规则
+  - host: "www.565427655.xyz"    #域名
     http:
       paths:
-      - path: /demo
-        pathType: ImplementationSpecific
+      - path: "/"
+        pathType: Prefix
         backend:
           service:
-            name: webapp
+            name: nginx-svc   #service的ClusterIP
             port:
-              number: 8080
+              number: 8080  #service的Port
 
 
 
